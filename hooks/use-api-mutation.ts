@@ -1,5 +1,9 @@
 import { useMutation } from 'convex/react';
-import { FunctionReference, OptionalRestArgs } from 'convex/server';
+import {
+  FunctionArgs,
+  FunctionReference,
+  OptionalRestArgs,
+} from 'convex/server';
 import { useState } from 'react';
 
 export const useApiMutation = <T extends FunctionReference<'mutation'>>(
