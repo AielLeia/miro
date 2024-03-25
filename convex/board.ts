@@ -55,7 +55,18 @@ export const removeBoard = mutation({
       throw new Error('Unauthorized to delete this resource');
     }
 
-    // TODO: Later check to delete favorite relation
+    const userId = identity.subject;
+
+    const existingFavorite = await ctx.db
+      .query('userFavorites')
+      .withIndex('by_user_board', (q) =>
+        q.eq('userId', userId).eq('boardId', board._id)
+      )
+      .unique();
+
+    if (existingFavorite) {
+      await ctx.db.delete(existingFavorite._id);
+    }
 
     await ctx.db.delete(id as Id<'boards'>);
 
@@ -122,11 +133,8 @@ export const favoriteBoard = mutation({
 
     const existingFavorite = await ctx.db
       .query('userFavorites')
-      .withIndex('by_user_board_organization', (q) =>
-        q
-          .eq('userId', userId)
-          .eq('boardId', board._id)
-          .eq('organizationId', organizationId)
+      .withIndex('by_user_board', (q) =>
+        q.eq('userId', userId).eq('boardId', board._id)
       )
       .unique();
 
@@ -164,10 +172,8 @@ export const unfavoriteBoard = mutation({
 
     const existingFavorite = await ctx.db
       .query('userFavorites')
-      .withIndex(
-        'by_user_board',
-        (q) => q.eq('userId', userId).eq('boardId', board._id)
-        // TODO: check if organizationId needed
+      .withIndex('by_user_board', (q) =>
+        q.eq('userId', userId).eq('boardId', board._id)
       )
       .unique();
 

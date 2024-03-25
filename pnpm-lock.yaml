@@ -35,6 +35,9 @@ dependencies:
   convex:
     specifier: ^1.10.0
     version: 1.10.0(react-dom@18.2.0)(react@18.2.0)
+  convex-helpers:
+    specifier: ^0.1.27
+    version: 0.1.27(convex@1.10.0)(react@18.2.0)
   date-fns:
     specifier: ^3.6.0
     version: 3.6.0
@@ -1984,6 +1987,25 @@ packages:
   /concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
+
+  /convex-helpers@0.1.27(convex@1.10.0)(react@18.2.0):
+    resolution: {integrity: sha512-Oc3xluBNd+rxy+Lok/X9QjaYmJddAZyMbOSE5OsFWsOulGqOp99PYAnngAYA0T/1Uw/D4j1bet2ql+nZLMtICg==}
+    peerDependencies:
+      convex: ^1.10.0
+      hono: ^4.0.5
+      react: ^17.0.2 || ^18.0.0
+      zod: ^3.22.4
+    peerDependenciesMeta:
+      hono:
+        optional: true
+      react:
+        optional: true
+      zod:
+        optional: true
+    dependencies:
+      convex: 1.10.0(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+    dev: false
 
   /convex@1.10.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-dGU3K3z63e4JQSq4AQthgxUADux1/0qfgFBtOsolcPo+ilV2Dp5wfBJYMOvLi7wkmNvJ+b3I90XfLPGfGzQrWw==}
