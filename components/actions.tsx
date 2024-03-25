@@ -32,7 +32,7 @@ const Actions = ({ children, side, sideOffset, id, title }: ActionsProps) => {
 
   const onCopyLink = async () => {
     await navigator.clipboard.writeText(
-      `${window.location.origin}/board/${id}`
+      `${window.location.origin}/boards/${id}`
     );
     toast.success('Link copied');
   };
