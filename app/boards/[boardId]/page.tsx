@@ -1,4 +1,6 @@
 import Canvas from '@/app/boards/[boardId]/_components/canvas';
+import Loading from '@/app/boards/[boardId]/_components/loading';
+import Room from '@/components/room';
 
 type BoardPageProps = {
   params: {
@@ -7,7 +9,11 @@ type BoardPageProps = {
 };
 
 const BoardPage = ({ params }: BoardPageProps) => {
-  return <Canvas boardId={params.boardId} />;
+  return (
+    <Room roomId={params.boardId} fallback={<Loading />}>
+      <Canvas boardId={params.boardId} />
+    </Room>
+  );
 };
 
 export default BoardPage;
