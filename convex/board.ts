@@ -1,5 +1,5 @@
 import { Id } from './_generated/dataModel';
-import { mutation } from './_generated/server';
+import { mutation, query } from './_generated/server';
 import { v } from 'convex/values';
 
 const images = [
@@ -184,5 +184,12 @@ export const unfavoriteBoard = mutation({
     await ctx.db.delete(existingFavorite._id);
 
     console.log(`Board delete from favorite for ${userId}`);
+  },
+});
+
+export const getBoard = query({
+  args: { id: v.string() },
+  handler: async (ctx, args) => {
+    return await ctx.db.get(args.id as Id<'boards'>);
   },
 });
