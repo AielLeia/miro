@@ -1,6 +1,8 @@
 'use client';
 
-import { useSelf } from '@/liveblocks.config';
+import { useCanRedo, useCanUndo, useHistory } from '@/liveblocks.config';
+import { CanvasMode, CanvasState } from '@/types/canvas';
+import { useState } from 'react';
 
 import Info from '@/app/boards/[boardId]/_components/info';
 import Participants from '@/app/boards/[boardId]/_components/participants';
@@ -11,13 +13,25 @@ type CanvasProps = {
 };
 
 const Canvas = ({ boardId }: CanvasProps) => {
-  const info = useSelf((me) => me.info);
+  const history = useHistory();
+  const canUndo = useCanUndo();
+  const canRedo = useCanRedo();
+  const [canvasState, setCanvasState] = useState<CanvasState>({
+    mode: CanvasMode.None,
+  });
 
   return (
     <main className="h-full w-full relative bg-neutral-100 touch-none">
       <Info boardId={boardId} />
       <Participants />
-      <Toolbar />
+      <Toolbar
+        canvasState={canvasState}
+        setCanvasState={setCanvasState}
+        canRedo={canRedo}
+        canUndo={canUndo}
+        redo={history.undo}
+        undo={history.redo}
+      />
     </main>
   );
 };
