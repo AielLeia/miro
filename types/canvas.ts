@@ -10,7 +10,7 @@ export enum LayerType {
   Note,
 }
 
-type Layer = {
+type AbstractLayer = {
   x: number;
   y: number;
   height: number;
@@ -19,24 +19,24 @@ type Layer = {
   value?: string;
 };
 
-export type RectangleLayer = Layer & {
+export type RectangleLayer = AbstractLayer & {
   type: LayerType.Rectangle;
 };
 
-export type EllipseLayer = Layer & {
+export type EllipseLayer = AbstractLayer & {
   type: LayerType.Ellipse;
 };
 
-export type PathLayer = Layer & {
+export type PathLayer = AbstractLayer & {
   type: LayerType.Path;
   points: number[][];
 };
 
-export type TextLayer = Layer & {
+export type TextLayer = AbstractLayer & {
   type: LayerType.Text;
 };
 
-export type NoteLayer = Layer & {
+export type NoteLayer = AbstractLayer & {
   type: LayerType.Note;
 };
 
@@ -84,3 +84,10 @@ export enum CanvasMode {
   Resizing,
   Pencil,
 }
+
+export type Layer =
+  | RectangleLayer
+  | EllipseLayer
+  | PathLayer
+  | TextLayer
+  | NoteLayer;
