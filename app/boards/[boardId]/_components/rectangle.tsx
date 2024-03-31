@@ -17,8 +17,6 @@ const Rectangle = ({
 }: RectangleProps) => {
   const { x, y, height, width, fill } = layer;
 
-  console.info({ id, layer });
-
   return (
     <rect
       className="drop-shadow-md"
