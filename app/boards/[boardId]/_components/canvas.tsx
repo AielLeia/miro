@@ -25,6 +25,7 @@ import CursorsPresence from '@/app/boards/[boardId]/_components/cursors-presence
 import Info from '@/app/boards/[boardId]/_components/info';
 import LayerPreview from '@/app/boards/[boardId]/_components/layer-preview';
 import Participants from '@/app/boards/[boardId]/_components/participants';
+import SelectionBox from '@/app/boards/[boardId]/_components/selection-box';
 import Toolbar from '@/app/boards/[boardId]/_components/toolbar';
 
 const MAX_LAYERS = 100;
@@ -185,6 +186,7 @@ const Canvas = ({ boardId }: CanvasProps) => {
               selectionColor={layerIdsToColorSelection[layerId]}
             />
           ))}
+          <SelectionBox onResizeHandlePointerDown={() => {}} />
           <CursorsPresence />
         </g>
       </svg>
