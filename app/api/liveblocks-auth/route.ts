@@ -6,8 +6,7 @@ import { ConvexHttpClient } from 'convex/browser';
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
 const liveblocks = new Liveblocks({
-  secret:
-    'sk_dev_D_j_1oBgKGYk_EWOqDlvTnS0eWMki7xGR9NaACmGSDe9ExwT4hClJIGxgqeP7Bbt',
+  secret: process.env.LIVEBLOCKS_SECRET_KEY!,
 });
 
 export async function POST(request: Request) {
