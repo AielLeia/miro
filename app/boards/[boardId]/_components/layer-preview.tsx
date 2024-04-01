@@ -1,11 +1,13 @@
 'use client';
 
+import { colorToCss } from '@/lib/utils';
 import { useStorage } from '@/liveblocks.config';
 import { LayerType } from '@/types/canvas';
 import React, { memo } from 'react';
 
 import Ellipse from '@/app/boards/[boardId]/_components/ellipse';
 import Note from '@/app/boards/[boardId]/_components/note';
+import Path from '@/app/boards/[boardId]/_components/path';
 import Rectangle from '@/app/boards/[boardId]/_components/rectangle';
 import Text from '@/app/boards/[boardId]/_components/text';
 
@@ -58,6 +60,17 @@ const LayerPreview = memo(
             layer={layer}
             onPointerDown={onLayerPointerDown}
             selectionColor={selectionColor}
+          />
+        );
+      case LayerType.Path:
+        return (
+          <Path
+            x={layer.x}
+            y={layer.y}
+            points={layer.points}
+            onPointerDown={(e) => onLayerPointerDown(e, id)}
+            fill={layer.fill ? colorToCss(layer.fill) : '#000'}
+            stroke={selectionColor}
           />
         );
       default:
